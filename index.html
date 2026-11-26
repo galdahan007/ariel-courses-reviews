@@ -39,7 +39,6 @@
       line-height: 1.6;
     }
 
-    /* Header with large left-side university emblem */
     header {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
       color: white;
@@ -170,14 +169,12 @@
       background: rgba(255, 255, 255, 0.22);
     }
 
-    /* Main Container */
     .container {
       max-width: 1140px;
       margin: 0 auto;
       padding: 1.5rem 1.25rem 3rem;
     }
 
-    /* Department Pills */
     .dept-tabs {
       display: flex;
       gap: 0.5rem;
@@ -210,7 +207,6 @@
       border-color: var(--primary);
     }
 
-    /* Controls / Filters */
     .filters-bar {
       background: var(--card);
       border: 1px solid var(--border);
@@ -244,7 +240,6 @@
       border-color: var(--primary);
     }
 
-    /* Empty State */
     .empty-state {
       grid-column: 1 / -1;
       background: var(--card);
@@ -254,22 +249,6 @@
       text-align: center;
     }
 
-    .empty-state h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.4rem;
-      color: var(--text);
-    }
-
-    .empty-state p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.25rem;
-      max-width: 540px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Stars Display */
     .stars-wrap {
       display: inline-flex;
       align-items: center;
@@ -287,7 +266,6 @@
       color: var(--star-empty);
     }
 
-    /* Courses Grid */
     .courses-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
@@ -480,7 +458,6 @@
       background: var(--primary-hover);
     }
 
-    /* YouTube-style Review Card */
     .yt-review-card {
       display: flex;
       gap: 0.85rem;
@@ -546,3 +523,772 @@
 
     .badge-organic {
       background: var(--success-bg);
+      color: var(--success-text);
+      padding: 0.18rem 0.55rem;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 0.76rem;
+    }
+
+    .badge-sponsored {
+      background: var(--warn-bg);
+      color: var(--warn-text);
+      padding: 0.18rem 0.55rem;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 0.76rem;
+    }
+
+    .about-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-top: 2.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    .about-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .about-header h2 {
+      font-size: 1.4rem;
+      color: var(--text);
+    }
+
+    .about-tag {
+      background: #eff6ff;
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+    }
+
+    .about-body p {
+      margin-bottom: 0.95rem;
+      color: #1e293b;
+      font-size: 0.97rem;
+    }
+
+    .about-highlight {
+      background: #f8fafc;
+      border-right: 4px solid var(--primary);
+      padding: 0.9rem 1.1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+
+    .about-footer-note {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #78350f;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-size: 0.93rem;
+      font-weight: 600;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 100;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius);
+      max-width: 720px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .course-detail-panel {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .coupon-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--coupon-bg);
+      border: 1px solid var(--coupon-border);
+      padding: 0.55rem 0.85rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+    }
+
+    .copy-btn {
+      background: #16a34a;
+      color: white;
+      border: none;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 0.9rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.88rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-content">
+        <div class="social-pill">נטו מיזם חברתי • ללא אינטרס רווחי</div>
+        <h1>מדרג קורסי התגבור להנדסה ומדעי המחשב</h1>
+        <p>ביקורות אמיתיות ושקופות מסטודנטים שכבר למדו — כדי שתדע לאן הכסף הולך ולמי, לפני שמשלמים.</p>
+        <div class="header-actions">
+          <a href="https://forms.gle/NBeGEZiZJDSCgt4q7" target="_blank" rel="noopener noreferrer" class="btn btn-primary">+ הוסף ביקורת</a>
+          <button class="btn btn-secondary" onclick="openAddCourseModal()">+ הוסף קורס למאגר</button>
+          <a href="#aboutSection" class="btn btn-outline">אודות המיזם</a>
+        </div>
+      </div>
+
+      <div class="uni-emblem-box">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Ariel_University_Logo.png"
+          alt="סמל אוניברסיטת אריאל"
+        />
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="dept-tabs" id="deptTabs">
+      <button class="dept-tab active" data-dept="all" onclick="selectDept(this)">כל המחלקות</button>
+      <button class="dept-tab" data-dept="הנדסת חשמל ואלקטרוניקה" onclick="selectDept(this)">הנדסת חשמל ואלקטרוניקה</button>
+      <button class="dept-tab" data-dept="הנדסת מכונות" onclick="selectDept(this)">הנדסת מכונות</button>
+      <button class="dept-tab" data-dept="הנדסה אזרחית" onclick="selectDept(this)">הנדסה אזרחית</button>
+      <button class="dept-tab" data-dept="הנדסת תעשייה וניהול" onclick="selectDept(this)">הנדסת תעשייה וניהול</button>
+      <button class="dept-tab" data-dept="הנדסת מחשבים ותוכנה" onclick="selectDept(this)">הנדסת מחשבים ותוכנה</button>
+      <button class="dept-tab" data-dept="מדעי המחשב" onclick="selectDept(this)">מדעי המחשב</button>
+    </nav>
+
+    <section class="filters-bar">
+      <input type="text" id="searchInput" placeholder="חפש קורס או מרתון (למשל: אינפי 1, פיזיקה 1, מערכות ספרתיות) או שם מעביר..." oninput="renderCourses()" />
+      <select id="sortFilter" onchange="renderCourses()">
+        <option value="rating">מיון: דירוג כוכבים (גבוה לנמוך)</option>
+        <option value="reviews">מיון: כמות ביקורות</option>
+        <option value="priceLow">מיון: מחיר (נמוך לגבוה)</option>
+      </select>
+    </section>
+
+    <section id="coursesGrid" class="courses-grid"></section>
+
+    <section id="aboutSection" class="about-section">
+      <div class="about-header">
+        <h2>אודות המיזם</h2>
+        <span class="about-tag">יוזמה חברתית לסטודנטים</span>
+      </div>
+      <div class="about-body">
+        <p>
+          שלום רב, שמי <strong>גל דהן</strong> ואני סטודנט להנדסת חשמל ואלקטרוניקה שנה ב'.
+          כנציג הפקולטה וכנציג שנתון בעבר, עם הזמן יצא לי לראות המון אנשים — חלקם סטודנטים וחלקם גורמים חיצוניים שלא קשורים לקהילה — שמפרסמים קורסים מסוימים בקבוצות הוואטסאפ. לחלק גדול מהם יש אינטרס רווחי או הטבה, והם מפרסמים לעיתים מבלי להכיר לעומק את הקורס שהם מוכרים.
+        </p>
+        <p>
+          המציאות שנוצרת היא שהמון סטודנטים, שמשקיעים ומחפשים כלים מעבר להרצאות, מוציאים מאות שקלים על הודעה שנוסחה בצורה שיווקית ומבטיחה כאילו מדובר בקורס אונליין שיביא להם מאה בכיס — אך בפועל הקורס לא מעודכן, לא מותאם לסילבוס או פשוט חלש, והכסף האישי שלהם יורד לטמיון. אותם גורמים שפועלים נטו למטרת רווח לא חושבים על ההישגים של הסטודנטים וכמובן שלא על הכיס שלהם.
+        </p>
+
+        <div class="about-highlight">
+          <p style="margin-bottom:0;">
+            <strong>חשוב לי להבהיר:</strong> אני בעצמי מבסס חלק גדול מהלמידה שלי על קורסים שקניתי, ואני לחלוטין לא נגד הדבר הזה. התפיסה שלי היא שאם אוכל לשלם כסף כדי לקבל פלטפורמה איכותית שמכינה אותי בצורה טובה למבחן — הרי זה מבורך. הבעיה היא לא עצם הרכישה, אלא חוסר השקיפות: צריך לדעת לאן הכסף הולך ולמי, ולא ליפול למלכודות של מי שפועל מאינטרס רווחי ותו לא.
+          </p>
+        </div>
+
+        <p>
+          לכן הקמתי מיזם חברתי שמטרתו למנוע זאת ולעזור לכולנו כמקשה אחת: להגיע לקורסים הטובים ביותר, המעודכנים ביותר והמותאמים ביותר שיש לעולם האונליין להציע, וכמובן לשמור על הכסף שלנו.
+        </p>
+        <p>
+          באתר תוכלו למצוא קורסים ולצדם ביקורות של סטודנטים אמיתיים שלמדו בקורס ומביעים את דעתם האובייקטיבית — בדיוק כמו שלפני שסוגרים מסעדה ליום הולדת, למשפחה או לבת זוג נכנסים לקרוא ביקורות, אותו הדבר כאן.
+        </p>
+
+        <div class="about-footer-note">
+          נטו מיזם חברתי — בלי קורסים פרטיים משלי ובלי אינטרס רווחי. המטרה היא לעזור לכולנו להגיע הכי רחוק שאפשר.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="reviewsModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <div class="badges-row" style="margin-bottom:0.35rem;">
+            <span id="modalDeptBadge" class="dept-badge"></span>
+            <span id="modalTypeBadge"></span>
+          </div>
+          <h2 id="modalCourseTitle" style="font-size: 1.3rem;"></h2>
+          <span id="modalCourseInstructor" style="color: var(--muted); font-size: 0.92rem;"></span>
+        </div>
+        <button class="close-btn" onclick="closeModal('reviewsModal')">&times;</button>
+      </div>
+
+      <div id="modalCoverWrap" style="margin-bottom: 1rem;"></div>
+      <div class="course-detail-panel" id="modalCourseSpecs"></div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem;">
+        <h3 style="font-size: 1.05rem;">ביקורות סטודנטים (<span id="modalReviewCount">0</span>)</h3>
+        <a href="https://forms.gle/NBeGEZiZJDSCgt4q7" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:0.45rem 0.9rem; font-size:0.85rem;">+ הוסף ביקורת</a>
+      </div>
+
+      <div id="modalReviewsList"></div>
+    </div>
+  </div>
+
+  <div id="addCourseModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 style="font-size: 1.25rem;">הוספת קורס או מרתון למאגר</h2>
+        <button class="close-btn" onclick="closeModal('addCourseModal')">&times;</button>
+      </div>
+      <form onsubmit="submitNewCourse(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>מחלקה *</label>
+            <select id="newCourseDept" required>
+              <option value="הנדסת חשמל ואלקטרוניקה">הנדסת חשמל ואלקטרוניקה</option>
+              <option value="הנדסת מכונות">הנדסת מכונות</option>
+              <option value="הנדסה אזרחית">הנדסה אזרחית</option>
+              <option value="הנדסת תעשייה וניהול">הנדסת תעשייה וניהול</option>
+              <option value="הנדסת מחשבים ותוכנה">הנדסת מחשבים ותוכנה</option>
+              <option value="מדעי המחשב">מדעי המחשב</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>סוג המסגרת *</label>
+            <select id="newCourseType" required>
+              <option value="קורס">קורס</option>
+              <option value="מרתון לקראת מבחן">מרתון לקראת מבחן</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>שם הקורס האקדמי *</label>
+            <input type="text" id="newCourseAcademic" placeholder="למשל: אינפי 1 / פיזיקה 1" required />
+          </div>
+          <div class="form-group">
+            <label>מי מעביר את זה? *</label>
+            <input type="text" id="newCourseInstructor" placeholder="שם המעביר / מותג" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>פלטפורמה ואופי ליווי *</label>
+            <input type="text" id="newCoursePlatform" placeholder="למשל: אתר / זום / 1-על-1 / הקלטות" required />
+          </div>
+          <div class="form-group">
+            <label>עדכון אחרון *</label>
+            <input type="text" id="newCourseUpdated" placeholder="למשל: סמסטר א׳ תשפ״ז" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>מחיר (בש״ח) *</label>
+            <input type="number" id="newCoursePrice" placeholder="למשל: 250" required />
+          </div>
+          <div class="form-group">
+            <label>קוד קופון (אם יש)</label>
+            <input type="text" id="newCourseCoupon" placeholder="אופציונלי" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>קישור לקורס / מרתון (להצגת תמונה וקישור ישיר)</label>
+          <input type="url" id="newCourseUrl" placeholder="https://..." />
+        </div>
+
+        <button type="submit" class="btn btn-secondary" style="width: 100%;">הוסף למאגר</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const REVIEWS_FORM_URL = "https://forms.gle/NBeGEZiZJDSCgt4q7";
+    const REVIEWS_SHEET_CSV_URL = "";
+    const STORAGE_KEY = "ariel_eng_courses_v1";
+
+    const initialCourses = [
+      {
+        id: "course-infi-1-yifat",
+        department: "הנדסת חשמל ואלקטרוניקה",
+        courseType: "קורס",
+        academicCourse: "אינפי 1",
+        instructor: "יפעת ברון",
+        platform: "אתר • מותאם לכלל המחלקות",
+        lastUpdated: "סמסטר א׳ תשפ״ז",
+        price: 259,
+        coupon: "",
+        courseUrl: "https://my.schooler.biz/s/48389/shoppingcart",
+        reviews: []
+      },
+      {
+        id: "course-physics-1-mechanics-mohammed",
+        department: "הנדסת חשמל ואלקטרוניקה",
+        courseType: "קורס",
+        academicCourse: "פיזיקה 1 - מכניקה",
+        instructor: "מוחמד עכאשה",
+        platform: "אתר",
+        lastUpdated: "סמסטר א׳ תשפ״ז",
+        price: 179,
+        coupon: "",
+        courseUrl: "http://marathonx.co.il/c/physics-electricity1/",
+        reviews: []
+      }
+    ];
+
+    let currentDept = "all";
+    let activeModalCourseId = null;
+    let coursesData = mergeCourses(initialCourses, loadSavedCourses());
+
+    function mergeCourses(baseList, savedList) {
+      const map = new Map();
+      baseList.forEach(item => map.set(String(item.id), item));
+      (savedList || []).forEach(item => {
+        if (!map.has(String(item.id))) {
+          map.set(String(item.id), item);
+        }
+      });
+      return Array.from(map.values());
+    }
+
+    function loadSavedCourses() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCoursesToStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(coursesData));
+      } catch (e) {}
+    }
+
+    function getCoursePreviewImage(courseUrl) {
+      if (!courseUrl || !courseUrl.startsWith("http")) return "";
+      return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(courseUrl)}?w=800`;
+    }
+
+    function getTypeBadgeHtml(courseType) {
+      const isMarathon = String(courseType || "").includes("מרתון");
+      return isMarathon
+        ? `<span class="type-badge-marathon">מרתון לקראת מבחן</span>`
+        : `<span class="type-badge-course">קורס</span>`;
+    }
+
+    function renderStars(rating) {
+      const clamped = Math.max(0, Math.min(5, Math.round(Number(rating) || 0)));
+      let html = `<span class="stars-wrap" aria-label="${clamped} מתוך 5 כוכבים">`;
+      for (let i = 1; i <= 5; i++) {
+        html += `<span class="star-icon ${i <= clamped ? "" : "empty"}">★</span>`;
+      }
+      html += "</span>";
+      return html;
+    }
+
+    function getAvgRating(reviews) {
+      if (!reviews || !reviews.length) return 0;
+      const sum = reviews.reduce((acc, r) => acc + (Number(r.rating) || 0), 0);
+      return +(sum / reviews.length).toFixed(1);
+    }
+
+    function selectDept(btn) {
+      document.querySelectorAll(".dept-tab").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      currentDept = btn.dataset.dept;
+      renderCourses();
+    }
+
+    function renderCourses() {
+      const search = document.getElementById("searchInput").value.trim().toLowerCase();
+      const sort = document.getElementById("sortFilter").value;
+      const grid = document.getElementById("coursesGrid");
+
+      let filtered = coursesData.filter(c => {
+        const matchesDept = currentDept === "all" || c.department === currentDept;
+        const matchesSearch =
+          (c.academicCourse || "").toLowerCase().includes(search) ||
+          (c.instructor || "").toLowerCase().includes(search) ||
+          (c.department || "").toLowerCase().includes(search) ||
+          (c.courseType || "").toLowerCase().includes(search) ||
+          (c.platform || "").toLowerCase().includes(search);
+        return matchesDept && matchesSearch;
+      });
+
+      filtered.sort((a, b) => {
+        const revA = (a.reviews || []).length;
+        const revB = (b.reviews || []).length;
+        if (sort === "reviews") return revB - revA;
+        if (sort === "priceLow") return (Number(a.price) || 0) - (Number(b.price) || 0);
+        return getAvgRating(b.reviews) - getAvgRating(a.reviews);
+      });
+
+      if (!filtered.length) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <h3>לא נמצאו קורסים תואמים</h3>
+            <button class="btn btn-secondary" style="margin-top:0.75rem;" onclick="openAddCourseModal()">+ הוסף קורס למאגר</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(course => {
+        const reviews = course.reviews || [];
+        const avg = getAvgRating(reviews);
+        const courseTypeLabel = course.courseType || "קורס";
+        const previewImg = getCoursePreviewImage(course.courseUrl);
+        const coverHtml = previewImg
+          ? `<div class="course-cover-wrap">
+               <img src="${previewImg}" alt="${course.academicCourse}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'course-cover-fallback\\'>${courseTypeLabel} • ${course.platform}</div>'" />
+             </div>`
+          : `<div class="course-cover-wrap">
+               <div class="course-cover-fallback">${courseTypeLabel} • ${course.platform}</div>
+             </div>`;
+
+        const couponHtml = course.coupon
+          ? `<div class="coupon-pill">🎟️ קוד קופון: ${course.coupon}</div>`
+          : `<div style="height: 29px; margin-bottom: 0.85rem;"></div>`;
+
+        return `
+          <article class="course-card">
+            ${coverHtml}
+            <div class="course-card-body">
+              <div class="card-top">
+                <div class="badges-row">
+                  <span class="dept-badge">${course.department}</span>
+                  ${getTypeBadgeHtml(courseTypeLabel)}
+                </div>
+                <div class="rating-summary">
+                  ${renderStars(avg)}
+                  <span>${avg > 0 ? avg : "חדש"}</span>
+                  <span style="color:var(--muted); font-weight:400;">(${reviews.length})</span>
+                </div>
+              </div>
+              <h3 class="course-title">${course.academicCourse}</h3>
+              <p class="course-instructor">${course.instructor}</p>
+
+              <div class="specs-grid">
+                <div class="spec-item">
+                  <span class="spec-label">פלטפורמה וליווי</span>
+                  <span class="spec-val">${course.platform}</span>
+                </div>
+                <div class="spec-item">
+                  <span class="spec-label">עדכון אחרון</span>
+                  <span class="spec-val">${course.lastUpdated}</span>
+                </div>
+              </div>
+
+              ${couponHtml}
+
+              <div class="card-footer">
+                <span class="price-tag">${course.price} ₪</span>
+                <button class="btn-view" onclick="openCourseDetails('${course.id}')">פרטים וביקורות (${reviews.length})</button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function openCourseDetails(courseId) {
+      const course = coursesData.find(c => String(c.id) === String(courseId));
+      if (!course) return;
+      activeModalCourseId = courseId;
+
+      const reviews = course.reviews || [];
+      const avg = getAvgRating(reviews);
+      const courseTypeLabel = course.courseType || "קורס";
+
+      document.getElementById("modalDeptBadge").textContent = course.department;
+      document.getElementById("modalTypeBadge").outerHTML = `<span id="modalTypeBadge">${getTypeBadgeHtml(courseTypeLabel)}</span>`;
+      document.getElementById("modalCourseTitle").textContent = course.academicCourse;
+      document.getElementById("modalCourseInstructor").textContent = `מעביר: ${course.instructor}`;
+      document.getElementById("modalReviewCount").textContent = reviews.length;
+
+      const previewImg = getCoursePreviewImage(course.courseUrl);
+      document.getElementById("modalCoverWrap").innerHTML = previewImg
+        ? `<div style="border-radius:10px; overflow:hidden; border:1px solid var(--border); max-height:220px;">
+             <img src="${previewImg}" alt="${course.academicCourse}" style="width:100%; height:220px; object-fit:cover; display:block;" />
+           </div>`
+        : "";
+
+      const couponBlock = course.coupon
+        ? `<div class="coupon-box">
+             <div><strong>קוד קופון: <code>${course.coupon}</code></strong></div>
+             <button class="copy-btn" onclick="copyCoupon('${course.coupon}', this)">העתק קוד</button>
+           </div>`
+        : "";
+
+      const linkBlock = course.courseUrl && course.courseUrl.startsWith("http")
+        ? `<div style="margin-top:0.75rem;">
+             <a href="${course.courseUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width:100%;">מעבר לקישור הקורס / מרתון ↗</a>
+           </div>`
+        : "";
+
+      document.getElementById("modalCourseSpecs").innerHTML = `
+        <div class="detail-grid">
+          <div class="spec-item">
+            <span class="spec-label">סוג</span>
+            <span class="spec-val">${courseTypeLabel}</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">דירוג ממוצע</span>
+            <span class="spec-val">${renderStars(avg)} (${avg}/5)</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">מחיר</span>
+            <span class="spec-val">${course.price} ₪</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">פלטפורמה וליווי</span>
+            <span class="spec-val">${course.platform}</span>
+          </div>
+          <div class="spec-item" style="grid-column: 1 / -1;">
+            <span class="spec-label">עדכון אחרון</span>
+            <span class="spec-val">${course.lastUpdated}</span>
+          </div>
+        </div>
+        ${couponBlock}
+        ${linkBlock}
+      `;
+
+      const list = document.getElementById("modalReviewsList");
+      if (!reviews.length) {
+        list.innerHTML = `<p style="color:var(--muted); text-align:center; padding:1rem;">עדיין אין ביקורות. היה הראשון להוסיף ביקורת דרך הטופס.</p>`;
+      } else {
+        list.innerHTML = reviews.map(r => {
+          const fullName = (r.fullName || "סטודנט/ית").trim();
+          const initial = fullName.charAt(0) || "ס";
+          const isSponsored = String(r.source || "").toLowerCase().includes("sponsored") || String(r.source || "").includes("חינם");
+          const badge = isSponsored
+            ? `<span class="badge-sponsored">גישה חינמית / הטבה</span>`
+            : `<span class="badge-organic">רכישה עצמאית</span>`;
+
+          return `
+            <div class="yt-review-card">
+              <div class="yt-avatar">${initial}</div>
+              <div class="yt-review-body">
+                <div class="yt-top-row">
+                  <div>
+                    <div class="yt-author-name">${fullName}</div>
+                    <div class="yt-degree-year">${r.degreeAndYear || ""}</div>
+                  </div>
+                  ${badge}
+                </div>
+                <div class="yt-stars-row">
+                  ${renderStars(r.rating)}
+                  <span style="font-size:0.82rem; color:var(--muted); font-weight:600;">${r.rating}/5</span>
+                </div>
+                <p class="yt-comment-text">${r.text}</p>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      document.getElementById("reviewsModal").classList.add("active");
+    }
+
+    function copyCoupon(code, btn) {
+      navigator.clipboard.writeText(code);
+      btn.textContent = "הועתק!";
+      setTimeout(() => { btn.textContent = "העתק קוד"; }, 2000);
+    }
+
+    function openAddCourseModal() {
+      document.getElementById("addCourseModal").classList.add("active");
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove("active");
+      if (id === "reviewsModal") activeModalCourseId = null;
+    }
+
+    function submitNewCourse(e) {
+      e.preventDefault();
+      const newCourse = {
+        id: String(Date.now()),
+        department: document.getElementById("newCourseDept").value,
+        courseType: document.getElementById("newCourseType").value,
+        academicCourse: document.getElementById("newCourseAcademic").value.trim(),
+        instructor: document.getElementById("newCourseInstructor").value.trim(),
+        platform: document.getElementById("newCoursePlatform").value.trim(),
+        lastUpdated: document.getElementById("newCourseUpdated").value.trim(),
+        price: Number(document.getElementById("newCoursePrice").value),
+        coupon: document.getElementById("newCourseCoupon").value.trim(),
+        courseUrl: document.getElementById("newCourseUrl").value.trim(),
+        reviews: []
+      };
+
+      coursesData.unshift(newCourse);
+      saveCoursesToStorage();
+      e.target.reset();
+      closeModal("addCourseModal");
+      renderCourses();
+    }
+
+    function parseCSVLine(line) {
+      const result = [];
+      let cur = "";
+      let inQuotes = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+          if (inQuotes && line[i + 1] === '"') {
+            cur += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (ch === "," && !inQuotes) {
+          result.push(cur.trim());
+          cur = "";
+        } else {
+          cur += ch;
+        }
+      }
+      result.push(cur.trim());
+      return result;
+    }
+
+    async function loadReviewsFromSheet() {
+      if (!REVIEWS_SHEET_CSV_URL || !REVIEWS_SHEET_CSV_URL.startsWith("http")) {
+        renderCourses();
+        return;
+      }
+      try {
+        const res = await fetch(REVIEWS_SHEET_CSV_URL, { cache: "no-store" });
+        const csvText = await res.text();
+        const lines = csvText.split(/\r?\n/).filter(l => l.trim().length > 0);
+        if (lines.length <= 1) {
+          renderCourses();
+          return;
+        }
+
+        coursesData.forEach(c => { c.reviews = []; });
+
+        for (let i = 1; i < lines.length; i++) {
+          const cols = parseCSVLine(lines[i]);
+          const email = (cols[1] || "").toLowerCase();
+          if (!email.endsWith("@msmail.ariel.ac.il")) continue;
+
+          const fullName = cols[2] || "";
+          const degreeAndYear = cols[3] || "";
+          const courseName = (cols[4] || "").toLowerCase();
+          const rating = Number(cols[5]) || 0;
+          const source = cols[6] || "organic";
+          const text = cols[7] || "";
+
+          const targetCourse = coursesData.find(c =>
+            (c.academicCourse || "").toLowerCase().includes(courseName) ||
+            courseName.includes((c.academicCourse || "").toLowerCase())
+          );
+
+          if (targetCourse && fullName && text) {
+            targetCourse.reviews.unshift({
+              fullName,
+              degreeAndYear,
+              rating,
+              source,
+              text
+            });
+          }
+        }
+
+        saveCoursesToStorage();
+        renderCourses();
+        if (activeModalCourseId) {
+          openCourseDetails(activeModalCourseId);
+        }
+      } catch (err) {
+        renderCourses();
+      }
+    }
+
+    loadReviewsFromSheet();
+  </script>
+</body>
+</html>
