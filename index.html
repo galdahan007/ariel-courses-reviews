@@ -712,8 +712,8 @@
         <h1>מדרג קורסי התגבור להנדסה ומדעי המחשב</h1>
         <p>ביקורות אמיתיות ושקופות מסטודנטים שכבר למדו — כדי שתדע לאן הכסף הולך ולמי, לפני שמשלמים.</p>
         <div class="header-actions">
-          <a href="https://forms.gle/NBeGEZiZJDSCgt4q7" target="_blank" rel="noopener noreferrer" class="btn btn-primary">+ הוסף ביקורת</a>
-          <button class="btn btn-secondary" onclick="openAddCourseModal()">+ הוסף קורס למאגר</button>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSetObDh9e2zK4O2Zq-nd26u24usP_9sxLAEQEVEZUDWHrUTLA/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-primary">+ הוסף ביקורת</a>
+          <button type="button" class="btn btn-secondary" onclick="openAddCourseModal()">+ הוסף קורס למאגר</button>
           <a href="#aboutSection" class="btn btn-outline">אודות המיזם</a>
         </div>
       </div>
@@ -729,13 +729,13 @@
 
   <main class="container">
     <nav class="dept-tabs" id="deptTabs">
-      <button class="dept-tab active" data-dept="all" onclick="selectDept(this)">כל המחלקות</button>
-      <button class="dept-tab" data-dept="הנדסת חשמל ואלקטרוניקה" onclick="selectDept(this)">הנדסת חשמל ואלקטרוניקה</button>
-      <button class="dept-tab" data-dept="הנדסת מכונות" onclick="selectDept(this)">הנדסת מכונות</button>
-      <button class="dept-tab" data-dept="הנדסה אזרחית" onclick="selectDept(this)">הנדסה אזרחית</button>
-      <button class="dept-tab" data-dept="הנדסת תעשייה וניהול" onclick="selectDept(this)">הנדסת תעשייה וניהול</button>
-      <button class="dept-tab" data-dept="הנדסת מחשבים ותוכנה" onclick="selectDept(this)">הנדסת מחשבים ותוכנה</button>
-      <button class="dept-tab" data-dept="מדעי המחשב" onclick="selectDept(this)">מדעי המחשב</button>
+      <button type="button" class="dept-tab active" data-dept="all" onclick="selectDept(this)">כל המחלקות</button>
+      <button type="button" class="dept-tab" data-dept="הנדסת חשמל ואלקטרוניקה" onclick="selectDept(this)">הנדסת חשמל ואלקטרוניקה</button>
+      <button type="button" class="dept-tab" data-dept="הנדסת מכונות" onclick="selectDept(this)">הנדסת מכונות</button>
+      <button type="button" class="dept-tab" data-dept="הנדסה אזרחית" onclick="selectDept(this)">הנדסה אזרחית</button>
+      <button type="button" class="dept-tab" data-dept="הנדסת תעשייה וניהול" onclick="selectDept(this)">הנדסת תעשייה וניהול</button>
+      <button type="button" class="dept-tab" data-dept="הנדסת מחשבים ותוכנה" onclick="selectDept(this)">הנדסת מחשבים ותוכנה</button>
+      <button type="button" class="dept-tab" data-dept="מדעי המחשב" onclick="selectDept(this)">מדעי המחשב</button>
     </nav>
 
     <section class="filters-bar">
@@ -794,7 +794,7 @@
           <h2 id="modalCourseTitle" style="font-size: 1.3rem;"></h2>
           <span id="modalCourseInstructor" style="color: var(--muted); font-size: 0.92rem;"></span>
         </div>
-        <button class="close-btn" onclick="closeModal('reviewsModal')">&times;</button>
+        <button type="button" class="close-btn" onclick="closeModal('reviewsModal')">&times;</button>
       </div>
 
       <div id="modalCoverWrap" style="margin-bottom: 1rem;"></div>
@@ -802,7 +802,7 @@
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.65rem;">
         <h3 style="font-size: 1.05rem;">ביקורות סטודנטים (<span id="modalReviewCount">0</span>)</h3>
-        <a href="https://forms.gle/NBeGEZiZJDSCgt4q7" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:0.45rem 0.9rem; font-size:0.85rem;">+ הוסף ביקורת</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSetObDh9e2zK4O2Zq-nd26u24usP_9sxLAEQEVEZUDWHrUTLA/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:0.45rem 0.9rem; font-size:0.85rem;">+ הוסף ביקורת</a>
       </div>
 
       <div id="modalReviewsList"></div>
@@ -813,7 +813,7 @@
     <div class="modal">
       <div class="modal-header">
         <h2 style="font-size: 1.25rem;">הוספת קורס או מרתון למאגר</h2>
-        <button class="close-btn" onclick="closeModal('addCourseModal')">&times;</button>
+        <button type="button" class="close-btn" onclick="closeModal('addCourseModal')">&times;</button>
       </div>
       <form onsubmit="submitNewCourse(event)">
         <div class="form-row">
@@ -881,14 +881,15 @@
   </div>
 
   <script>
-    const REVIEWS_FORM_URL = "https://forms.gle/NBeGEZiZJDSCgt4q7";
-    const REVIEWS_SHEET_CSV_URL = "";
-    const STORAGE_KEY = "ariel_eng_courses_v1";
+    const REVIEWS_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSetObDh9e2zK4O2Zq-nd26u24usP_9sxLAEQEVEZUDWHrUTLA/viewform";
+    const REVIEWS_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1ixAbqKhBlqRWDZS-rbYmcPMBlP-VuXtdAptPylP4rEk/export?format=csv&gid=1305564445";
+    const STORAGE_KEY = "ariel_eng_courses_v2";
 
     const initialCourses = [
       {
         id: "course-infi-1-yifat",
         department: "הנדסת חשמל ואלקטרוניקה",
+        allDepartments: true,
         courseType: "קורס",
         academicCourse: "אינפי 1",
         instructor: "יפעת ברון",
@@ -902,6 +903,7 @@
       {
         id: "course-physics-1-mechanics-mohammed",
         department: "הנדסת חשמל ואלקטרוניקה",
+        allDepartments: false,
         courseType: "קורס",
         academicCourse: "פיזיקה 1 - מכניקה",
         instructor: "מוחמד עכאשה",
@@ -987,7 +989,7 @@
       const grid = document.getElementById("coursesGrid");
 
       let filtered = coursesData.filter(c => {
-        const matchesDept = currentDept === "all" || c.department === currentDept;
+        const matchesDept = currentDept === "all" || c.allDepartments === true || c.department === currentDept;
         const matchesSearch =
           (c.academicCourse || "").toLowerCase().includes(search) ||
           (c.instructor || "").toLowerCase().includes(search) ||
@@ -1008,8 +1010,8 @@
       if (!filtered.length) {
         grid.innerHTML = `
           <div class="empty-state">
-            <h3>לא נמצאו קורסים תואמים</h3>
-            <button class="btn btn-secondary" style="margin-top:0.75rem;" onclick="openAddCourseModal()">+ הוסף קורס למאגר</button>
+            <h3>לא נמצאו קורסים במחלקה או בחיפוש זה</h3>
+            <button type="button" class="btn btn-secondary" style="margin-top:0.75rem;" onclick="openAddCourseModal()">+ הוסף קורס למאגר</button>
           </div>
         `;
         return;
@@ -1019,6 +1021,7 @@
         const reviews = course.reviews || [];
         const avg = getAvgRating(reviews);
         const courseTypeLabel = course.courseType || "קורס";
+        const deptLabel = course.allDepartments ? "כלל המחלקות" : course.department;
         const previewImg = getCoursePreviewImage(course.courseUrl);
         const coverHtml = previewImg
           ? `<div class="course-cover-wrap">
@@ -1038,7 +1041,7 @@
             <div class="course-card-body">
               <div class="card-top">
                 <div class="badges-row">
-                  <span class="dept-badge">${course.department}</span>
+                  <span class="dept-badge">${deptLabel}</span>
                   ${getTypeBadgeHtml(courseTypeLabel)}
                 </div>
                 <div class="rating-summary">
@@ -1065,7 +1068,7 @@
 
               <div class="card-footer">
                 <span class="price-tag">${course.price} ₪</span>
-                <button class="btn-view" onclick="openCourseDetails('${course.id}')">פרטים וביקורות (${reviews.length})</button>
+                <button type="button" class="btn-view" onclick="openCourseDetails('${course.id}')">פרטים וביקורות (${reviews.length})</button>
               </div>
             </div>
           </article>
@@ -1081,8 +1084,9 @@
       const reviews = course.reviews || [];
       const avg = getAvgRating(reviews);
       const courseTypeLabel = course.courseType || "קורס";
+      const deptLabel = course.allDepartments ? "כלל המחלקות" : course.department;
 
-      document.getElementById("modalDeptBadge").textContent = course.department;
+      document.getElementById("modalDeptBadge").textContent = deptLabel;
       document.getElementById("modalTypeBadge").outerHTML = `<span id="modalTypeBadge">${getTypeBadgeHtml(courseTypeLabel)}</span>`;
       document.getElementById("modalCourseTitle").textContent = course.academicCourse;
       document.getElementById("modalCourseInstructor").textContent = `מעביר: ${course.instructor}`;
@@ -1098,7 +1102,7 @@
       const couponBlock = course.coupon
         ? `<div class="coupon-box">
              <div><strong>קוד קופון: <code>${course.coupon}</code></strong></div>
-             <button class="copy-btn" onclick="copyCoupon('${course.coupon}', this)">העתק קוד</button>
+             <button type="button" class="copy-btn" onclick="copyCoupon('${course.coupon}', this)">העתק קוד</button>
            </div>`
         : "";
 
@@ -1142,10 +1146,11 @@
         list.innerHTML = reviews.map(r => {
           const fullName = (r.fullName || "סטודנט/ית").trim();
           const initial = fullName.charAt(0) || "ס";
-          const isSponsored = String(r.source || "").toLowerCase().includes("sponsored") || String(r.source || "").includes("חינם");
-          const badge = isSponsored
-            ? `<span class="badge-sponsored">גישה חינמית / הטבה</span>`
-            : `<span class="badge-organic">רכישה עצמאית</span>`;
+          const sourceText = String(r.source || "");
+          const isSpecial = sourceText.includes("קופון") || sourceText.includes("חינם") || sourceText.includes("הטבה");
+          const badge = isSpecial
+            ? `<span class="badge-sponsored">${sourceText || "הטבה / קופון"}</span>`
+            : `<span class="badge-organic">${sourceText || "רכישה עצמאית"}</span>`;
 
           return `
             <div class="yt-review-card">
@@ -1192,6 +1197,7 @@
       const newCourse = {
         id: String(Date.now()),
         department: document.getElementById("newCourseDept").value,
+        allDepartments: false,
         courseType: document.getElementById("newCourseType").value,
         academicCourse: document.getElementById("newCourseAcademic").value.trim(),
         instructor: document.getElementById("newCourseInstructor").value.trim(),
@@ -1221,28 +1227,42 @@
       return numMatch ? Number(numMatch[0]) : 0;
     }
 
-    function parseCSVLine(line) {
-      const result = [];
+    function parseCSVRows(text) {
+      const rows = [];
+      let row = [];
       let cur = "";
       let inQuotes = false;
-      for (let i = 0; i < line.length; i++) {
-        const ch = line[i];
+
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        const next = text[i + 1];
+
         if (ch === '"') {
-          if (inQuotes && line[i + 1] === '"') {
+          if (inQuotes && next === '"') {
             cur += '"';
             i++;
           } else {
             inQuotes = !inQuotes;
           }
         } else if (ch === "," && !inQuotes) {
-          result.push(cur.trim());
+          row.push(cur.trim());
+          cur = "";
+        } else if ((ch === "\n" || (ch === "\r" && next === "\n")) && !inQuotes) {
+          if (ch === "\r") i++;
+          row.push(cur.trim());
+          if (row.some(cell => cell.length > 0)) rows.push(row);
+          row = [];
           cur = "";
         } else {
           cur += ch;
         }
       }
-      result.push(cur.trim());
-      return result;
+
+      if (cur.length > 0 || row.length > 0) {
+        row.push(cur.trim());
+        if (row.some(cell => cell.length > 0)) rows.push(row);
+      }
+      return rows;
     }
 
     async function loadReviewsFromSheet() {
@@ -1253,36 +1273,46 @@
       try {
         const res = await fetch(REVIEWS_SHEET_CSV_URL, { cache: "no-store" });
         const csvText = await res.text();
-        const lines = csvText.split(/\r?\n/).filter(l => l.trim().length > 0);
-        if (lines.length <= 1) return;
+        const rows = parseCSVRows(csvText);
+        if (rows.length <= 1) return;
 
         coursesData.forEach(c => { c.reviews = []; });
 
-        for (let i = 1; i < lines.length; i++) {
-          const cols = parseCSVLine(lines[i]);
-          const emailCol = cols.find(col => col.toLowerCase().endsWith("@msmail.ariel.ac.il"));
-          if (!emailCol) continue;
+        // מיפוי מדויק לפי עמודות הגיליון (A עד K):
+        // B[1]=מייל, C[2]=שם פרטי, D[3]=שם משפחה, E[4]=תואר, F[5]=שנת לימודים,
+        // G[6]=קורס, H[7]=דירוג, I[8]=שנת רכישה, J[9]=אופן קבלת הקורס, K[10]=פירוט הביקורת
+        for (let i = 1; i < rows.length; i++) {
+          const cols = rows[i];
+          const email = (cols[1] || "").trim().toLowerCase();
+          if (!email.endsWith("@msmail.ariel.ac.il")) continue;
 
-          const ratingIdx = cols.findIndex(col => parseRating(col) > 0);
-          const rating = ratingIdx >= 0 ? parseRating(cols[ratingIdx]) : 0;
-          if (!rating) continue;
+          const firstName = (cols[2] || "").trim();
+          const lastName = (cols[3] || "").trim();
+          const fullName = `${firstName} ${lastName}`.trim() || "סטודנט/ית";
 
-          const fullName = cols[2] || "סטודנט/ית";
-          const degreeAndYear = cols[3] || "";
-          const courseName = (cols[4] || "").toLowerCase();
-          const source = cols[6] || "organic";
-          const text = cols[7] || cols[cols.length - 1] || "";
+          const degree = (cols[4] || "").trim();
+          const studyYear = (cols[5] || "").trim();
+          const purchaseYear = (cols[8] || "").trim();
+          const metaParts = [
+            degree,
+            studyYear ? `שנה ${studyYear}` : "",
+            purchaseYear ? `נרכש ב-${purchaseYear}` : ""
+          ].filter(Boolean);
+          const degreeAndYear = metaParts.join(" • ");
+
+          const courseName = (cols[6] || "").trim().toLowerCase();
+          const rating = parseRating(cols[7]);
+          const source = (cols[9] || "").trim();
+          const text = (cols[10] || "").trim();
+
+          if (!rating || !text || !courseName) continue;
 
           const targetCourse = coursesData.find(c => {
             const cName = (c.academicCourse || "").toLowerCase();
-            return (courseName && (cName.includes(courseName) || courseName.includes(cName))) ||
-                   cols.some(col => {
-                     const low = col.toLowerCase();
-                     return low.length > 2 && (cName.includes(low) || low.includes(cName));
-                   });
+            return cName.includes(courseName) || courseName.includes(cName);
           });
 
-          if (targetCourse && text) {
+          if (targetCourse) {
             targetCourse.reviews.unshift({
               fullName,
               degreeAndYear,
