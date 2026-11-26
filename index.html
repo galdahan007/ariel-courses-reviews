@@ -895,8 +895,8 @@
 
   <script>
     const REVIEWS_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSetObDh9e2zK4O2Zq-nd26u24usP_9sxLAEQEVEZUDWHrUTLA/viewform";
-    const REVIEWS_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1ixAbqKhBlqRWDZS-rbYmcPMBlP-VuXtdAptPylP4rEk/export?format=csv&gid=1305564445";
-    const STORAGE_KEY = "ariel_eng_courses_v3";
+    const REVIEWS_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSbGbJGmxHODaSKssYDFUHsboq3jwC79S2qFv5rS_qO0vwQo4pfPI0Z0R6H2FTJ2IxzdIyvcs50FGq-/pub?gid=1305564445&single=true&output=csv";
+    const STORAGE_KEY = "ariel_eng_courses_v4";
 
     const initialCourses = [
       {
@@ -1290,21 +1290,32 @@
       return rows;
     }
 
+    async function fetchCsvWithFallback(baseUrl) {
+      const sep = baseUrl.includes("?") ? "&" : "?";
+      const targetUrl = `${baseUrl}${sep}_t=${Date.now()}`;
+      try {
+        const res = await fetch(targetUrl, { cache: "no-store" });
+        if (res.ok) {
+          const text = await res.text();
+          if (text && !text.trim().startsWith("<!DOCTYPE")) return text;
+        }
+      } catch (e) {}
+
+      const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`;
+      const proxyRes = await fetch(proxyUrl, { cache: "no-store" });
+      if (!proxyRes.ok) throw new Error(`HTTP ${proxyRes.status}`);
+      return await proxyRes.text();
+    }
+
     async function loadReviewsFromSheet() {
       renderCourses();
       if (!REVIEWS_SHEET_CSV_URL || !REVIEWS_SHEET_CSV_URL.startsWith("http")) {
         return;
       }
       try {
-        const cacheBustUrl = `${REVIEWS_SHEET_CSV_URL}${REVIEWS_SHEET_CSV_URL.includes("?") ? "&" : "?"}_t=${Date.now()}`;
-        const res = await fetch(cacheBustUrl, { cache: "no-store" });
-        if (!res.ok) {
-          setDebugMessage(`שגיאה בטעינת הגיליון (${res.status}). ודא שהגיליון מפורסם כ-CSV ציבורי.`);
-          return;
-        }
-        const csvText = await res.text();
+        const csvText = await fetchCsvWithFallback(REVIEWS_SHEET_CSV_URL);
         if (csvText.trim().startsWith("<!DOCTYPE") || csvText.includes("<html")) {
-          setDebugMessage("הגיליון החזיר עמוד התחברות של Google במקום CSV. בדוק הגדרות פרסום באינטרנט (Publish to web).");
+          setDebugMessage("הגיליון החזיר עמוד HTML במקום CSV. בדוק הגדרות פרסום באינטרנט (Publish to web).");
           return;
         }
 
@@ -1367,7 +1378,7 @@
           openCourseDetails(activeModalCourseId);
         }
       } catch (err) {
-        setDebugMessage(`שגיאת רשת או CORS בעת קריאת הגיליון: ${err.message}`);
+        setDebugMessage(`שגיאת רשת בעת קריאת הגיליון: ${err.message}`);
         renderCourses();
       }
     }
