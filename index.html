@@ -895,8 +895,9 @@
 
   <script>
     const REVIEWS_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSetObDh9e2zK4O2Zq-nd26u24usP_9sxLAEQEVEZUDWHrUTLA/viewform";
+    const REVIEWS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx9e2lPzqoMkRE2mtK6ifElmQHcxCmKkAS5ZqLALUcBVZfM09qn4EgdHpY0ONMcwUQ/exec";
     const REVIEWS_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSbGbJGmxHODaSKssYDFUHsboq3jwC79S2qFv5rS_qO0vwQo4pfPI0Z0R6H2FTJ2IxzdIyvcs50FGq-/pub?gid=1305564445&single=true&output=csv";
-    const STORAGE_KEY = "ariel_eng_courses_v4";
+    const STORAGE_KEY = "ariel_eng_courses_v5";
 
     const initialCourses = [
       {
@@ -1290,96 +1291,95 @@
       return rows;
     }
 
-    async function fetchCsvWithFallback(baseUrl) {
-      const sep = baseUrl.includes("?") ? "&" : "?";
-      const targetUrl = `${baseUrl}${sep}_t=${Date.now()}`;
-      try {
-        const res = await fetch(targetUrl, { cache: "no-store" });
-        if (res.ok) {
-          const text = await res.text();
-          if (text && !text.trim().startsWith("<!DOCTYPE")) return text;
-        }
-      } catch (e) {}
+    function applyRowsToCourses(rows) {
+      if (!Array.isArray(rows) || rows.length <= 1) return 0;
+      coursesData.forEach(c => { c.reviews = []; });
+      let loadedCount = 0;
 
-      const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`;
-      const proxyRes = await fetch(proxyUrl, { cache: "no-store" });
-      if (!proxyRes.ok) throw new Error(`HTTP ${proxyRes.status}`);
-      return await proxyRes.text();
+      for (let i = 1; i < rows.length; i++) {
+        const cols = rows[i];
+        const email = String(cols[1] || "").trim().toLowerCase();
+        if (!email.endsWith("@msmail.ariel.ac.il")) continue;
+
+        const firstName = String(cols[2] || "").trim();
+        const lastName = String(cols[3] || "").trim();
+        const fullName = `${firstName} ${lastName}`.trim() || "סטודנט/ית";
+
+        const degree = String(cols[4] || "").trim();
+        const studyYear = String(cols[5] || "").trim();
+        const purchaseYear = String(cols[8] || "").trim();
+        const metaParts = [
+          degree,
+          studyYear ? `שנה ${studyYear}` : "",
+          purchaseYear ? `נרכש ב-${purchaseYear}` : ""
+        ].filter(Boolean);
+        const degreeAndYear = metaParts.join(" • ");
+
+        const courseName = String(cols[6] || "").trim().toLowerCase();
+        const rating = parseRating(cols[7]);
+        const source = String(cols[9] || "").trim();
+        const text = String(cols[10] || "").trim();
+
+        if (!rating || !text || !courseName) continue;
+
+        const targetCourse = coursesData.find(c => {
+          const cName = (c.academicCourse || "").toLowerCase();
+          return cName.includes(courseName) || courseName.includes(cName);
+        });
+
+        if (targetCourse) {
+          targetCourse.reviews.unshift({
+            fullName,
+            degreeAndYear,
+            rating,
+            source,
+            text
+          });
+          loadedCount++;
+        }
+      }
+      return loadedCount;
     }
 
     async function loadReviewsFromSheet() {
       renderCourses();
-      if (!REVIEWS_SHEET_CSV_URL || !REVIEWS_SHEET_CSV_URL.startsWith("http")) {
-        return;
-      }
-      try {
-        const csvText = await fetchCsvWithFallback(REVIEWS_SHEET_CSV_URL);
-        if (csvText.trim().startsWith("<!DOCTYPE") || csvText.includes("<html")) {
-          setDebugMessage("הגיליון החזיר עמוד HTML במקום CSV. בדוק הגדרות פרסום באינטרנט (Publish to web).");
-          return;
-        }
+      let loadedCount = 0;
 
-        const rows = parseCSVRows(csvText);
-        if (rows.length <= 1) {
-          setDebugMessage("הגיליון נטען אך אין בו עדיין שורות תגובה מתחת לכותרות.");
-          return;
-        }
-
-        coursesData.forEach(c => { c.reviews = []; });
-        let loadedCount = 0;
-
-        for (let i = 1; i < rows.length; i++) {
-          const cols = rows[i];
-          const email = (cols[1] || "").trim().toLowerCase();
-          if (!email.endsWith("@msmail.ariel.ac.il")) continue;
-
-          const firstName = (cols[2] || "").trim();
-          const lastName = (cols[3] || "").trim();
-          const fullName = `${firstName} ${lastName}`.trim() || "סטודנט/ית";
-
-          const degree = (cols[4] || "").trim();
-          const studyYear = (cols[5] || "").trim();
-          const purchaseYear = (cols[8] || "").trim();
-          const metaParts = [
-            degree,
-            studyYear ? `שנה ${studyYear}` : "",
-            purchaseYear ? `נרכש ב-${purchaseYear}` : ""
-          ].filter(Boolean);
-          const degreeAndYear = metaParts.join(" • ");
-
-          const courseName = (cols[6] || "").trim().toLowerCase();
-          const rating = parseRating(cols[7]);
-          const source = (cols[9] || "").trim();
-          const text = (cols[10] || "").trim();
-
-          if (!rating || !text || !courseName) continue;
-
-          const targetCourse = coursesData.find(c => {
-            const cName = (c.academicCourse || "").toLowerCase();
-            return cName.includes(courseName) || courseName.includes(cName);
-          });
-
-          if (targetCourse) {
-            targetCourse.reviews.unshift({
-              fullName,
-              degreeAndYear,
-              rating,
-              source,
-              text
-            });
-            loadedCount++;
+      if (REVIEWS_WEB_APP_URL && REVIEWS_WEB_APP_URL.startsWith("http")) {
+        try {
+          const sep = REVIEWS_WEB_APP_URL.includes("?") ? "&" : "?";
+          const res = await fetch(`${REVIEWS_WEB_APP_URL}${sep}_t=${Date.now()}`, { cache: "no-store" });
+          if (res.ok) {
+            const data = await res.json();
+            if (data && Array.isArray(data.rows)) {
+              loadedCount = applyRowsToCourses(data.rows);
+              setDebugMessage("");
+              saveCoursesToStorage();
+              renderCourses();
+              if (activeModalCourseId) openCourseDetails(activeModalCourseId);
+              return;
+            }
           }
-        }
+        } catch (e) {}
+      }
 
-        setDebugMessage(loadedCount === 0 ? "הגיליון נקרא בהצלחה אך אף שורה לא התאימה לתנאי (מייל @msmail.ariel.ac.il, שם קורס ודירוג)." : "");
-        saveCoursesToStorage();
-        renderCourses();
-        if (activeModalCourseId) {
-          openCourseDetails(activeModalCourseId);
+      if (REVIEWS_SHEET_CSV_URL && REVIEWS_SHEET_CSV_URL.startsWith("http")) {
+        try {
+          const sep = REVIEWS_SHEET_CSV_URL.includes("?") ? "&" : "?";
+          const res = await fetch(`${REVIEWS_SHEET_CSV_URL}${sep}_t=${Date.now()}`, { cache: "no-store" });
+          const csvText = await res.text();
+          if (!csvText.trim().startsWith("<!DOCTYPE") && !csvText.includes("<html")) {
+            const rows = parseCSVRows(csvText);
+            loadedCount = applyRowsToCourses(rows);
+            setDebugMessage(loadedCount === 0 ? "הנתונים נטענו אך אף שורה לא התאימה לתנאי." : "");
+            saveCoursesToStorage();
+            renderCourses();
+            if (activeModalCourseId) openCourseDetails(activeModalCourseId);
+            return;
+          }
+        } catch (err) {
+          setDebugMessage(`שגיאה בטעינת הביקורות: ${err.message}`);
         }
-      } catch (err) {
-        setDebugMessage(`שגיאת רשת בעת קריאת הגיליון: ${err.message}`);
-        renderCourses();
       }
     }
 
