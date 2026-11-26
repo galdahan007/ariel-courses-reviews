@@ -175,6 +175,17 @@
       padding: 1.5rem 1.25rem 3rem;
     }
 
+    .debug-banner {
+      background: #fef9c3;
+      border: 1px solid #facc15;
+      color: #713f12;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
     .dept-tabs {
       display: flex;
       gap: 0.5rem;
@@ -728,6 +739,8 @@
   </header>
 
   <main class="container">
+    <div id="debugBanner" class="debug-banner"></div>
+
     <nav class="dept-tabs" id="deptTabs">
       <button type="button" class="dept-tab active" data-dept="all" onclick="selectDept(this)">כל המחלקות</button>
       <button type="button" class="dept-tab" data-dept="הנדסת חשמל ואלקטרוניקה" onclick="selectDept(this)">הנדסת חשמל ואלקטרוניקה</button>
@@ -883,7 +896,7 @@
   <script>
     const REVIEWS_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSetObDh9e2zK4O2Zq-nd26u24usP_9sxLAEQEVEZUDWHrUTLA/viewform";
     const REVIEWS_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1ixAbqKhBlqRWDZS-rbYmcPMBlP-VuXtdAptPylP4rEk/export?format=csv&gid=1305564445";
-    const STORAGE_KEY = "ariel_eng_courses_v2";
+    const STORAGE_KEY = "ariel_eng_courses_v3";
 
     const initialCourses = [
       {
@@ -919,6 +932,18 @@
     let currentDept = "all";
     let activeModalCourseId = null;
     let coursesData = mergeCourses(initialCourses, loadSavedCourses());
+
+    function setDebugMessage(msg) {
+      const el = document.getElementById("debugBanner");
+      if (!el) return;
+      if (!msg) {
+        el.style.display = "none";
+        el.textContent = "";
+      } else {
+        el.style.display = "block";
+        el.textContent = msg;
+      }
+    }
 
     function mergeCourses(baseList, savedList) {
       const map = new Map();
@@ -1271,16 +1296,27 @@
         return;
       }
       try {
-        const res = await fetch(REVIEWS_SHEET_CSV_URL, { cache: "no-store" });
+        const cacheBustUrl = `${REVIEWS_SHEET_CSV_URL}${REVIEWS_SHEET_CSV_URL.includes("?") ? "&" : "?"}_t=${Date.now()}`;
+        const res = await fetch(cacheBustUrl, { cache: "no-store" });
+        if (!res.ok) {
+          setDebugMessage(`שגיאה בטעינת הגיליון (${res.status}). ודא שהגיליון מפורסם כ-CSV ציבורי.`);
+          return;
+        }
         const csvText = await res.text();
+        if (csvText.trim().startsWith("<!DOCTYPE") || csvText.includes("<html")) {
+          setDebugMessage("הגיליון החזיר עמוד התחברות של Google במקום CSV. בדוק הגדרות פרסום באינטרנט (Publish to web).");
+          return;
+        }
+
         const rows = parseCSVRows(csvText);
-        if (rows.length <= 1) return;
+        if (rows.length <= 1) {
+          setDebugMessage("הגיליון נטען אך אין בו עדיין שורות תגובה מתחת לכותרות.");
+          return;
+        }
 
         coursesData.forEach(c => { c.reviews = []; });
+        let loadedCount = 0;
 
-        // מיפוי מדויק לפי עמודות הגיליון (A עד K):
-        // B[1]=מייל, C[2]=שם פרטי, D[3]=שם משפחה, E[4]=תואר, F[5]=שנת לימודים,
-        // G[6]=קורס, H[7]=דירוג, I[8]=שנת רכישה, J[9]=אופן קבלת הקורס, K[10]=פירוט הביקורת
         for (let i = 1; i < rows.length; i++) {
           const cols = rows[i];
           const email = (cols[1] || "").trim().toLowerCase();
@@ -1320,15 +1356,18 @@
               source,
               text
             });
+            loadedCount++;
           }
         }
 
+        setDebugMessage(loadedCount === 0 ? "הגיליון נקרא בהצלחה אך אף שורה לא התאימה לתנאי (מייל @msmail.ariel.ac.il, שם קורס ודירוג)." : "");
         saveCoursesToStorage();
         renderCourses();
         if (activeModalCourseId) {
           openCourseDetails(activeModalCourseId);
         }
       } catch (err) {
+        setDebugMessage(`שגיאת רשת או CORS בעת קריאת הגיליון: ${err.message}`);
         renderCourses();
       }
     }
