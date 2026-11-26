@@ -1233,7 +1233,17 @@
       result.push(cur.trim());
       return result;
     }
-
+function parseRating(val) {
+  const s = String(val || "").trim();
+  const numMatch = s.match(/[1-5]/);
+  if (numMatch) return Number(numMatch[0]);
+  if (s.includes("אחד") || s.includes("1")) return 1;
+  if (s.includes("שני") || s.includes("שניים") || s.includes("2")) return 2;
+  if (s.includes("שלוש") || s.includes("שלושה") || s.includes("3")) return 3;
+  if (s.includes("ארבע") || s.includes("ארבעה") || s.includes("4")) return 4;
+  if (s.includes("חמש") || s.includes("חמישה") || s.includes("5")) return 5;
+  return 0;
+}
     async function loadReviewsFromSheet() {
       if (!REVIEWS_SHEET_CSV_URL || !REVIEWS_SHEET_CSV_URL.startsWith("http")) {
         renderCourses();
@@ -1258,7 +1268,7 @@
           const fullName = cols[2] || "";
           const degreeAndYear = cols[3] || "";
           const courseName = (cols[4] || "").toLowerCase();
-          const rating = Number(cols[5]) || 0;
+          const rating = parseRating(cols[5]); || 0;
           const source = cols[6] || "organic";
           const text = cols[7] || "";
 
